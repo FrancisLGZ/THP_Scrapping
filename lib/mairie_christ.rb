@@ -58,19 +58,20 @@ def get_townhall_url(url)
 end
 
 
-urldef = get_townhall_url(townhallS_url)
-
-urldef.join(",")
-
-puts get_townhall_email(urldef)
-
 #METHODE 2 : GETS URLS FROM TOWNHALL
 
-# townhall_url_array = get_townhall_url(townhallS_url)
+urldef = get_townhall_url(townhallS_url)
 
-# puts townhall_url_array.each do |link|
+#puts urldef
 
-#   link = 
-  
-#   "https://www.annuaire-des-mairies.com#{link}"
-# end
+final_emails = []
+
+urldef.each do |email_def|
+  pages = Nokogiri::HTML(URI.open(email_def))
+  pages.xpath('/html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]').each do |email|
+
+    final_emails << email.text
+  end
+end
+
+puts final_emails
