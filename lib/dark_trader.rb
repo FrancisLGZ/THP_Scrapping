@@ -53,5 +53,10 @@ end
 
 final_array = []
 
+final_hash = Hash[crypto_scrapper(page_url).zip(prices_scrapper(page_url))]
+
+final_array.push(final_hash)
+
+puts final_array.class
 
 # end
