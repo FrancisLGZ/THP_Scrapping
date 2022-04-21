@@ -17,9 +17,9 @@ townhall_url = "https://www.annuaire-des-mairies.com/95/ableiges.html"
 
 townhallS_url = "https://www.annuaire-des-mairies.com/val-d-oise.html"
 
-#LIENS URL#
 
-#METHODE 1 : GET EMAILS#
+
+#METHODE 1 : GET EMAILS
 
 def get_townhall_email(url)
 
@@ -35,8 +35,6 @@ def get_townhall_email(url)
     return townhall_email_array
 
 end
-
-#METHODE 1 : GET EMAILS#
 
 
 
@@ -58,7 +56,6 @@ def get_townhall_url(url)
 end
 
 
-#METHODE 2 : GETS URLS FROM TOWNHALL
 
 urldef = get_townhall_url(townhallS_url)
 
@@ -71,6 +68,7 @@ urldef.each do |email_def|
   pages.xpath('/html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]').each do |email|
 
     final_emails << email.text
+
   end
 end
 
