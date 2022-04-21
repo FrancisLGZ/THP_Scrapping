@@ -15,9 +15,13 @@ require 'open-uri'
 #1- SCRAPPER LES SYMBOLS DES CRYPTO DANS UN ARRAY
 #2- SCRAPPER LES PRIX DANS UN ARRAY
 #3- FUSIONNER LES DEUX ARRAY EN UN HASH
+#4- FAIRE UN ARRAY OU CHAQUE COUPLE CRYPTO/PRIX = UN HASH
 
 
 page_url = "https://coinmarketcap.com/all/views/all/" 
+
+
+#METHODE CRYPTO#
 
 def crypto_scrapper(url)
 
@@ -34,6 +38,10 @@ def crypto_scrapper(url)
 
 end
 
+
+
+#METHODE PRIX#
+
 def prices_scrapper(url)
 
   prices_array = []
@@ -49,14 +57,20 @@ def prices_scrapper(url)
 
 end
 
-# def final_array ()
 
-final_array = []
+#METHODE FUSION ARRAY > HASH > ARRAY COMPOSE DE HASHS#
 
-final_hash = Hash[crypto_scrapper(page_url).zip(prices_scrapper(page_url))]
 
-final_array.push(final_hash)
+def final_array(url)
 
-puts final_array.class
+  final_array = []
 
-# end
+  final_hash = Hash[crypto_scrapper(url).zip(prices_scrapper(url))]
+
+  final_hash.map {|hash| {hash[0] => hash[1]}}
+
+    return final_hash
+
+end
+
+puts final_array(page_url)
