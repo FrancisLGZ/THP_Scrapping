@@ -1,0 +1,1 @@
+puts prices_array
